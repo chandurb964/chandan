@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+body{
+    font-family:Georgia,serif;
+    background:#000;
+}
+
+.scene{
+    width:100%;
+    height:100%;
+    position:relative;
+    overflow:hidden;
+
+    background:
+      radial-gradient(circle at center,
+      #fff 0%,
+      #fff7f9 42%,
+      #ffc5d2 100%);
+}
+
+/* ---------- TEXT ---------- */
+
+.small{
+    position:absolute;
+    top:7%;
+    width:100%;
+    text-align:center;
+
+    color:#777;
+    font-family:Arial,sans-serif;
+    font-size:12px;
+    letter-spacing:3px;
+
+    opacity:0;
+    animation:fade 1.5s forwards;
+    animation-delay:.5s;
+}
+
+.small b{
+    display:block;
+    color:#e95c82;
+    margin-top:7px;
+}
+
+.title{
+    position:absolute;
+    top:16%;
+    width:100%;
+
+    text-align:center;
+
+    color:#e85b81;
+    font-size:clamp(55px,12vw,125px);
+    line-height:.82;
+
+    font-style:italic;
+    font-weight:bold;
+
+    text-shadow:
+       2px 2px white,
+       4px 5px 10px rgba(100,30,50,.15);
+
+    opacity:0;
+
+    animation:titleIn 2s forwards;
+    animation-delay:1.2s;
+}
+
+@keyframes fade{
+    to{opacity:1;}
+}
+
+@keyframes titleIn{
+    0%{
+        opacity:0;
+        transform:translateY(35px) scale(.75);
+    }
+
+    100%{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+/* ---------- TREE ---------- */
+
+.tree{
+    position:absolute;
+    left:50%;
+    bottom:2%;
+
+    width:300px;
+    height:510px;
+
+    transform:translateX(-50%);
+}
+
+/* Main trunk */
+
+.trunk{
+    position:absolute;
+    left:50%;
+    bottom:0;
+
+    width:10px;
+    height:330px;
+
+    background:#38282c;
+    border-radius:20px;
+
+    transform-origin:bottom;
+    transform:translateX(-50%) scaleY(0);
+
+    animation:trunkGrow 3s ease forwards;
+    animation-delay:2.4s;
+}
+
+@keyframes trunkGrow{
+    to{
+        transform:translateX(-50%) scaleY(1);
+    }
+}
+
+/* Branches */
+
+.branch{
+    position:absolute;
+
+    height:7px;
+    border-radius:10px;
+
+    background:#38282c;
+
+    transform-origin:left center;
+    transform:scaleX(0);
+
+    animation:branchGrow 1.4s ease forwards;
+    animation-delay:4s;
+}
+
+.b1{
+    left:50%;
+    bottom:205px;
+    width:135px;
+    --r:-48deg;
+}
+
+.b2{
+    left:50%;
+    bottom:250px;
+    width:125px;
+    --r:45deg;
+}
+
+.b3{
+    left:50%;
+    bottom:285px;
+    width:105px;
+    --r:-35deg;
+}
+
+.b4{
+    left:50%;
+    bottom:315px;
+    width:95px;
+    --r:34deg;
+}
+
+@keyframes branchGrow{
+    to{
+        transform:rotate(var(--r)) scaleX(1);
+    }
+}
+
+/* ---------- FLOWERS ---------- */
+
+.flower{
+    position:absolute;
+
+    width:15px;
+    height:15px;
+
+    border-radius:50%;
+
+    background:
+      radial-gradient(circle,
+      #fff 0 13%,
+      #ffcad5 14% 35%,
+      #ff7597 36% 65%,
+      #df456e 66%);
+
+    box-shadow:
+      0 2px 5px rgba(190,40,80,.25);
+
+    transform:scale(0);
+
+    animation:flowerIn .5s ease forwards;
+}
+
+@keyframes flowerIn{
+    to{
+        transform:scale(1);
+    }
+}
+
+/* ---------- MESSAGE ---------- */
+
+.message{
+    position:absolute;
+
+    left:50%;
+    bottom:5%;
+
+    width:90%;
+
+    transform:translateX(-50%) translateY(30px);
+
+    text-align:center;
+
+    color:#666;
+
+    font-size:clamp(13px,3vw,22px);
+    font-style:italic;
+
+    opacity:0;
+
+    animation:messageIn 2s forwards;
+    animation-delay:8.2s;
+}
+
+.message span{
+    color:#e65078;
+    font-weight:bold;
+    font-size:1.4em;
+}
+
+@keyframes messageIn{
+    to{
+        opacity:1;
+        transform:translateX(-50%) translateY(0);
+    }
+}
+
+/* ---------- HEART PARTICLES ---------- */
+
+.particle{
+    position:absolute;
+
+    color:#f07898;
+
+    font-size:18px;
+
+    opacity:0;
+
+    animation:particle 5s linear infinite;
+}
+
+.p1{left:12%;top:30%;animation-delay:1s;}
+.p2{left:82%;top:25%;animation-delay:2s;}
+.p3{left:18%;top:70%;animation-delay:3s;}
+.p4{left:78%;top:65%;animation-delay:4s;}
+
+@keyframes particle{
+    0%{
+        opacity:0;
+        transform:translateY(30px) scale(.5);
+    }
+
+    30%{
+        opacity:.7;
+    }
+
+    100%{
+        opacity:0;
+        transform:translateY(-100px) scale(1.2);
+    }
+}
+
+/* ---------- MUSIC BUTTON ---------- */
+
+.music{
+    position:absolute;
+
+    top:18px;
+    right:18px;
+
+    width:45px;
+    height:45px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#e85b82;
+    color:#fff;
+
+    font-size:20px;
+
+    z-index:20;
+
+    cursor:pointer;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.2);
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:600px){
+
+    .tree{
+        transform:
+          translateX(-50%)
+          scale(.72);
+
+        transform-origin:
+          bottom center;
+    }
+
+    .title{
+        top:19%;
+    }
+
+    .message{
+        bottom:3%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+
+    <!-- Floating hearts -->
+
+    <div class="particle p1">♥</div>
+    <div class="particle p2">♥</div>
+    <div class="particle p3">♥</div>
+    <div class="particle p4">♥</div>
+
+
+    <!-- Small heading -->
+
+    <div class="small">
+        A LITTLE LOVE • A LITTLE MAGIC
+        <b>MAKE A WISH</b>
+    </div>
+
+
+    <!-- Birthday title -->
+
+    <div class="title">
+        Happy<br>
+        Birthday
+    </div>
+
+
+    <!-- Tree -->
+
+    <div class="tree">
+
+        <div class="trunk"></div>
+
+        <div class="branch b1"></div>
+        <div class="branch b2"></div>
+        <div class="branch b3"></div>
+        <div class="branch b4"></div>
+
+        <div id="flowers"></div>
+
+    </div>
+
+
+    <!-- Bottom message -->
+
+    <div class="message">
+        May your special day bloom with
+        <span>love & happiness</span>
+    </div>
+
+
+    <!-- Music -->
+
+    <button class="music" onclick="toggleMusic()">
+        ♪
+    </button>
+
+    <audio id="song" preload="auto">
+        <source src="birthday_song.mp3" type="audio/mpeg">
+    </audio>
+
+</div>
+
+
+<script>
+
+/* =====================================
+   CREATE HEART-SHAPED FLOWER TREE
+===================================== */
+
+const container =
+    document.getElementById("flowers");
+
+const totalFlowers = 180;
+
+for(let i=0;i<totalFlowers;i++){
+
+    /*
+       Heart equation
+    */
+
+    const t =
+        Math.random() * Math.PI * 2;
+
+    let x =
+        16 * Math.pow(Math.sin(t),3);
+
+    let y =
+        13 * Math.cos(t)
+        - 5 * Math.cos(2*t)
+        - 2 * Math.cos(3*t)
+        - Math.cos(4*t);
+
+
+    /*
+       Random natural movement
+    */
+
+    x +=
+        (Math.random()-.5)*3;
+
+    y +=
+        (Math.random()-.5)*3;
+
+
+    const flower =
+        document.createElement("div");
+
+    flower.className="flower";
+
+
+    /*
+       Position inside tree
+    */
+
+    flower.style.left =
+        (50 + x*4.3) + "%";
+
+    flower.style.top =
+        (43 - y*4.0) + "%";
+
+
+    /*
+       Random flower size
+    */
+
+    const size =
+        9 + Math.random()*12;
+
+    flower.style.width =
+        size+"px";
+
+    flower.style.height =
+        size+"px";
+
+
+    /*
+       Flower animation starts
+       after tree grows
+    */
+
+    flower.style.animationDelay =
+        (5 + Math.random()*3) + "s";
+
+
+    container.appendChild(flower);
+}
+
+
+/* =====================================
+   MUSIC
+===================================== */
+
+const song =
+    document.getElementById("song");
+
+let playing=false;
+
+function toggleMusic(){
+
+    if(!playing){
+
+        song.play()
+        .then(()=>{
+            playing=true;
+            document.querySelector(".music").textContent="❚❚";
+        })
+        .catch(()=>{
+            alert(
+              "Tap the music button again to start the song."
+            );
+        });
+
+    }else{
+
+        song.pause();
+
+        playing=false;
+
+        document.querySelector(".music").textContent="♪";
+    }
+}
+
+
+/* =====================================
+   START MUSIC AFTER USER TAP
+===================================== */
+
+document.addEventListener(
+    "click",
+    function start(){
+
+        if(!playing){
+
+            song.play()
+            .then(()=>{
+                playing=true;
+                document.querySelector(".music").textContent="❚❚";
+            })
+            .catch(()=>{});
+
+        }
+
+        document.removeEventListener(
+            "click",
+            start
+        );
+    }
+);
+
+</script>
+
+</body>
+</html>
